@@ -1,0 +1,31 @@
+#container{
+    /*border:2px solid;*/
+    /*width:2000px;*/
+
+  }
+
+  .left{
+    width:600px;
+    float:left;
+  }
+  .right{
+    width:500px;
+    float:left;
+  }
+  .left_div{
+    background: #F0F0F0 ;
+    width:600px;
+    height:660px;
+    float:left;
+    border: 1px solid;
+    /*margin:5px;*/
+  }
+
+  .right_div{
+    width:680px;
+    height:330px;
+    background:#F0F0F0;
+    border: 1px solid;
+    float:left;
+    /*margin:5px;*/
+  }
