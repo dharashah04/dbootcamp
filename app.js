@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var width = 960,
-      height = 660;
+      height = 502;
   var wq_data =
 {
     "1986": {
@@ -74,8 +74,8 @@ $(document).ready(function(){
 };
   var svg = d3.select(".map_div").append("svg")
       .attr("width", width)
-      .attr("height", height);
-   
+      .attr("height", height)
+      .attr("id", 'map') 
   d3.json("ganga.json", function(error, ganga) {
     if (error) return console.error(error);
     console.log(ganga);
@@ -103,6 +103,16 @@ $(document).ready(function(){
       .attr("class", 'river')
       .attr("d", path);
 
+//Town labels
+//  svg.selectAll(".place-label")
+//      .data(topojson.feature(ganga, towns).features)
+//    .enter().append("text")
+//      .attr("class", "place-label")
+//      .attr("transform", function(d) { return "translate(" + india_projection(d.geometry.coordinates) + ")"; })
+//      .attr("dy", "0.5em")
+//      .attr("dx", "-3em")
+//      .text(function(d) { return d.properties["Location"]; });
+
 //Towns
  wq_scale = d3.scale.sqrt().domain([1, 11.5]).range([5, 22]) 
  function update(data) {
@@ -127,14 +137,16 @@ $(document).ready(function(){
       })
     .append("title")
       .text(function(d) {
-        return d.properties.Location
+        title = d.properties.Location + ": " + data[d.properties.id]+ " mg/L";
+        return title;
       });
  }
  update(wq_data["1986"])
  $('.year-switch').click(function(){
    year = $(this).data('year');
-   console.log(year);
    $('.towns').remove()
+   title_text = "BoD levels of the River Ganga in " + year
+   $('#title').text(title_text)
    update(wq_data[year]);
  });
 
